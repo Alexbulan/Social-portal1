@@ -1,36 +1,30 @@
- <template>
+<template>
   <div class="home">
 <!--    <img alt="Vue logo" src="../assets/logo.png"> -->
  <!--   <HelloWorld msg="Welcome to Your Vue.js App"/> -->
 
         <v-container fluid>
 
-          <h1 class="green--text text--darken-3 text-left">
+          <h1 class="green--text text--darken-2 text-left">
                   SocialLink
           </h1>
           <br>
-          <h2 class="green--text text--darken-3 text-left">
+          <h2 class="green--text text--darken-2 text-left">
                   Новый формат делового общения
           </h2>
 
           <v-row class="text-left">
             <v-col cols="6">
-              <img src="./../assets/communication.jpg" width="510">
+              <img src="./../assets/communication.jpg" width="410">
             </v-col>
 
             <v-col cols="6">
                 <b>
-                    <br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
-                    text text text text text text text<br>
+                     Добро пожаловать в нашу новую и супер современную социальную сеть!<br>
+                                         <br>
+                     Приятного общения!))<br>
+                                            <br>
+                     НАХОДИТЬСЯ В РАЗРАБОТКЕ!<br>
                 </b>
             </v-col>
           </v-row>
@@ -44,7 +38,7 @@
 export default {
   name: 'home',
   components: {
-    //    HelloWorld
+//    HelloWorld
   }
 }
 </script>

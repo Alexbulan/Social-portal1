@@ -11,7 +11,7 @@
       <v-list nav shaped dense>
         <v-list-item two-line>
           <v-list-item-avatar>
-            <img src="https://randomuser.me/api/portraits/men/6.jpg">
+            <img src="https://secure.webtoolhub.com/static/resources/icons/set113/f9a6ef38.png">
           </v-list-item-avatar>
           <v-list-item-content class="text-left">
             <v-list-item-title class="font-weight-black">SocialLink</v-list-item-title>
@@ -31,7 +31,7 @@
         </v-list-item>
 
 
-        <v-list-item link to="/users">
+        <v-list-item link to="/profile/2">
           <v-list-item-icon>
             <v-icon>mdi-face</v-icon>
           </v-list-item-icon>
@@ -41,7 +41,7 @@
         </v-list-item>
 
 
-        <v-list-item link to="/profile/1">
+        <v-list-item link to="/users">
           <v-list-item-icon>
             <v-icon>mdi-contacts</v-icon>
           </v-list-item-icon>
@@ -57,7 +57,7 @@
     
     <v-content class="px-12 py-3">
       <v-container fluid>
-        <router-view v-on:login ="updateUser"/>
+        <router-view v-on:login ="updateUser" :user ="user"/>
       </v-container>
     </v-content>
 
@@ -86,3 +86,20 @@
   }
 }
 </style>
+
+<script>
+export default {
+  data(){
+    return {
+      user: {},
+    }
+  },
+
+mounted:{
+  updateUser(user){
+  this.user = user
+}
+}
+}
+
+</script>

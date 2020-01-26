@@ -23,25 +23,33 @@
         </v-card>
     </div>
 </template>
+
 <script>
 export default {
-authenticate(){
-  this.axios.get('http://188.225.47.187/api/jsonstorage/c7edec985e57acbe6ef1f20b8aaa864b') 
-    .then(
-        (response)=> {
-            let users = response.data;
-            let found = false;
-            for(let index in users){
-                if(this.login == users[index].login && this.password == users[index].password){
-                    this.$router.push('login',index);
-                    found =true;
-                    break;
-                }
-            }
-            if(!found)
-            window.alert('Неверный логин или пароль')
+    data(){
+        return{
         }
-    )
+    },
+    methods:{
+        authenticate(){
+            this.axios.get('http://188.225.47.187/api/jsonstorage/5c3213cf8dc0288ba8e64ab667b46d49')
+                .then(
+                    (response) => {
+                        let users = response.data;
+                        let found = false;
+                        for(let index in users){
+                            if(this.login == users[index].login && this.password == users[index].password){
+                                this.$emit('login', index);
+                                this.$router.push('/' );
+                                found = true;
+                                break;
+                            }
+                        }
+                        if(!found)
+                            window.alert('Неверный логин или пароль!')
+                    }
+                )
+        }
+    },
 }
-}
-</script>>
+</script>
