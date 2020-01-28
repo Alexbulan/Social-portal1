@@ -28,6 +28,41 @@
             </v-col>
         </v-row>
 
+
+        <div style="text-align: left;" v-if="this.$route.params.id == myId">
+            <v-col cols="10">
+            <v-card outlined max-width="1000" class="mx-auto">
+            <v-list>
+
+                <v-list-item>
+                    <v-list-item-title>
+                        <strong>
+                            <v-text-field
+                            v-model="postTitle"
+                            label="Заголовок поста"
+                            color="green"
+                            ></v-text-field>
+                        </strong>
+                    </v-list-item-title>
+
+                    <v-btn @click="addPost()" class="ma-3" outlined color="green">Опубликовать</v-btn>
+                </v-list-item>
+
+                <v-list-item>
+                    <v-textarea
+                        v-model="postBody"
+                        label="Сам пост"
+                        outlined
+                        color="green"
+                    ></v-textarea>
+                </v-list-item>
+                
+            </v-list>
+            </v-card>
+            </v-col>
+        </div>
+
+
         <v-col cols="10">
         <Post v-for="(post, index) in posts" 
         :key="index"
@@ -35,7 +70,7 @@
         :title="post.title"
         :body="post.body"
         :author="profile.name"
-        :avatar="avatar"
+        :avatar="profile.photo"
         ></Post>
         </v-col>
     </div>
@@ -50,13 +85,15 @@ export default {
     data(){
         return{
             profile: {},
-            posts: null,
+            posts: [],
+            postTitle: '',
+            postBody: '',
         }
     },
     methods:{
         loadUser(){
             this.profile = {login:'',password:'',name:'',website:'',email:'',city:'',company:'',photo:''}
-            let url = 'https://secure.webtoolhub.com/static/resources/icons/set113/f9a6ef38.png'
+            let url = 'http://188.225.47.187/api/jsonstorage/b7412928ed5e83e004c55601a2f33421'
             this.$axios.get(url)
             .then(response=>{
                 let users = response.data
@@ -64,11 +101,30 @@ export default {
             })
         },
         loadPosts(){
-            let url = 'http://jsonplaceholder.typicode.com/posts?userId=' + this.$route.params.id
+            let url = 'http://188.225.47.187/api/jsonstorage/78e292980c3ba495ad88527ba396fc20'
             this.$axios.get(url).then(response=>{
-                this.posts = response.data
+                let allPosts = response.data
+                this.posts = []
+                for(let post in allPosts){
+                    if (allPosts[post].userId == this.$route.params.id){
+                        this.posts.push(allPosts[post])
+                    }
+                }
             })
         },
+        addPost(){
+            this.$axios.get('http://188.225.47.187/api/jsonstorage/78e292980c3ba495ad88527ba396fc20')
+                .then((response) => {
+                    let allPosts = response.data
+                    allPosts.push({
+                        userId: this.myId,
+                        title: this.postTitle,
+                        body: this.postBody
+                    })
+                    this.axios.put('http://188.225.47.187/api/jsonstorage/78e292980c3ba495ad88527ba396fc20', allPosts);
+                    this.loadPosts()
+                })
+        }
         
     },
     mounted(){

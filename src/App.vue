@@ -31,7 +31,7 @@
         </v-list-item>
 
 
-        <v-list-item link to="/profile/2">
+        <v-list-item link to="/profile/1">
           <v-list-item-icon>
             <v-icon>mdi-face</v-icon>
           </v-list-item-icon>

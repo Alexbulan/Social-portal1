@@ -32,7 +32,7 @@ export default {
     },
     methods:{
         authenticate(){
-            this.axios.get('http://188.225.47.187/api/jsonstorage/5c3213cf8dc0288ba8e64ab667b46d49')
+            this.axios.get('http://188.225.47.187/api/jsonstorage/b7412928ed5e83e004c55601a2f33421')
                 .then(
                     (response) => {
                         let users = response.data;
